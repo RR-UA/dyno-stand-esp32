@@ -1,0 +1,81 @@
+---
+Language: Cpp
+BasedOnStyle: Mozilla
+
+ColumnLimit: 120
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+#InsertTrailingCommas: None
+
+BreakBeforeBraces: Attach
+AlwaysBreakAfterReturnType: None
+AlwaysBreakAfterDefinitionReturnType: None
+PenaltyReturnTypeOnItsOwnLine: 1000
+PenaltyBreakBeforeFirstCallParameter: 1
+PenaltyExcessCharacter: 1000000
+
+InsertBraces: false
+
+PointerAlignment: Right
+ReferenceAlignment: Right
+
+IndentCaseLabels: true
+IndentCaseBlocks: false
+IndentGotoLabels: false
+NamespaceIndentation: None
+
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+SpaceAfterCStyleCast: false
+SpaceBeforeCpp11BracedList: false
+SpaceBeforeSquareBrackets: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpacesInAngles: Never
+SpacesBeforeTrailingComments: 2
+
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: true
+AlignConsecutiveDeclarations:
+  Enabled: false
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 1
+
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Always
+AllowShortLoopsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Empty
+
+BreakBeforeBinaryOperators: None
+BreakBeforeTernaryOperators: true
+BreakStringLiterals: false
+
+BinPackArguments: true
+BinPackParameters: true
+AllowAllArgumentsOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+
+SortIncludes: CaseSensitive
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<.*\.h>'
+    Priority: 1
+  - Regex: '^<.*>'
+    Priority: 2
+  - Regex: '.*'
+    Priority: 3
+
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1
+...
