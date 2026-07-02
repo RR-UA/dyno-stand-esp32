@@ -33,4 +33,5 @@ static void IRAM_ATTR jtag_isr_handler(void *arg) {
 void console_init(void) {
     tare_sem = xSemaphoreCreateBinary();
     esp_intr_alloc(ETS_USB_SERIAL_JTAG_INTR_SOURCE, ESP_INTR_FLAG_IRAM, jtag_isr_handler, NULL, NULL);
+    usb_serial_jtag_ll_ena_intr_mask(USB_SERIAL_JTAG_INTR_SERIAL_OUT_RECV_PKT);
 }
