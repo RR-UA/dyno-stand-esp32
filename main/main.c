@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "driver/gpio.h"
+#include "include/console.h"
 #include "include/hx711.h"
 #include "include/storage.h"
 
@@ -18,6 +19,7 @@ void app_main(void) {
     };
     gpio_config(&cfg);
 
+    console_init();
     storage_init();
     hx711_init();
 
@@ -28,7 +30,12 @@ void app_main(void) {
         storage_save_tare(hx711_tare());
 
     while (1) {
-        if (gpio_get_level(BUTTON_PIN) == 0) storage_save_tare(hx711_tare());
-        printf("%d\n", hx711_read_weight());
+        const int weight = hx711_read_weight();
+
+        if (gpio_get_level(BUTTON_PIN) == 0 || xSemaphoreTake(tare_sem, 0) == pdTRUE) {
+            storage_save_tare(hx711_tare());
+        } else {
+            printf("%d\n", weight);
+        }
     }
 }

@@ -13,7 +13,7 @@ static long hx711_offset = 0;
 static SemaphoreHandle_t hx711_data_ready_sem;
 
 /**
- * ISR triggered on DOUT falling edge, signals that conversion is ready.
+ * ISR triggered on DOT falling edge, signals that conversion is ready.
  */
 static void IRAM_ATTR hx711_isr_handler(void *arg) {
     BaseType_t high_task_wakeup = pdFALSE;
@@ -93,6 +93,7 @@ int32_t hx711_tare(void) {
     hx711_offset = hx711_read_avg(FILTER_SIZE);
     for (int i = 0; i < FILTER_SIZE; i++)
         filter_buf[i] = hx711_offset;
+
     return (int32_t)hx711_offset;
 }
 
@@ -116,5 +117,5 @@ int hx711_read_weight(void) {
         sum += filter_buf[i];
 
     const long moving_avg = (long)(sum / FILTER_SIZE);
-    return (int)((moving_avg - hx711_offset) / SCALE_FACTOR);
+    return (int32_t)((moving_avg - hx711_offset) / SCALE_FACTOR);
 }
